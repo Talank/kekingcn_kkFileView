@@ -4,6 +4,7 @@ on:
   schedule:
     - cron: '30 18 * * *' # 02:30 Asia/Shanghai
   workflow_dispatch:
+  push:
 
 permissions:
   contents: read
