@@ -4,13 +4,14 @@ on:
   pull_request:
     branches: [master]
   workflow_dispatch:
+  push:
 
 permissions:
   contents: read
 
 jobs:
   e2e-mvp:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 40
 
     steps:
@@ -98,3 +99,10 @@ jobs:
           path: |
             /tmp/kkfileview.log
             /tmp/fixture-server.log
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+      fail-fast: false
