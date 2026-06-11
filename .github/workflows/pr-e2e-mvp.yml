@@ -1,8 +1,6 @@
 name: PR E2E MVP
 
 on:
-  pull_request:
-    branches: [master]
   workflow_dispatch:
 
 permissions:
@@ -10,7 +8,7 @@ permissions:
 
 jobs:
   e2e-mvp:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 40
 
     steps:
@@ -98,3 +96,10 @@ jobs:
           path: |
             /tmp/kkfileview.log
             /tmp/fixture-server.log
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+      fail-fast: false

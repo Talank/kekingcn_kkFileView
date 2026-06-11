@@ -1,8 +1,6 @@
 name: Nightly E2E Full
 
 on:
-  schedule:
-    - cron: '30 18 * * *' # 02:30 Asia/Shanghai
   workflow_dispatch:
 
 permissions:
@@ -10,7 +8,7 @@ permissions:
 
 jobs:
   e2e-nightly:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 50
 
     steps:
@@ -116,3 +114,10 @@ jobs:
           path: |
             /tmp/kkfileview.log
             /tmp/fixture-server.log
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+      fail-fast: false
