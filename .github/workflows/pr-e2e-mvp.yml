@@ -1,8 +1,6 @@
 name: PR E2E MVP
 
 on:
-  pull_request:
-    branches: [master]
   workflow_dispatch:
 
 permissions:
@@ -98,3 +96,5 @@ jobs:
           path: |
             /tmp/kkfileview.log
             /tmp/fixture-server.log
+    strategy:
+      fail-fast: false
