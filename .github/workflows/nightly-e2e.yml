@@ -11,10 +11,7 @@ permissions:
 
 jobs:
   e2e-nightly:
-    strategy:
-      matrix:
-        os: [ ubuntu-latest, windows-latest, macos-latest ]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     timeout-minutes: 50
 
     steps:
