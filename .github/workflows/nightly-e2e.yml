@@ -1,16 +1,20 @@
 name: Nightly E2E Full
 
 on:
-  schedule:
-    - cron: '30 18 * * *' # 02:30 Asia/Shanghai
-  workflow_dispatch:
+  push:
+  # schedule:
+  #   - cron: '30 18 * * *' # 02:30 Asia/Shanghai
+  # workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
   e2e-nightly:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 50
 
     steps:
